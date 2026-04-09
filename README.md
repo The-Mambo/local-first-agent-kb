@@ -1,4 +1,4 @@
-# Local-First KB Blueprint
+# Local-First Agent KB
 
 A practical blueprint for building a local-first knowledge base for AI assistants.
 
@@ -10,6 +10,11 @@ This repository shows a simple, shareable pattern:
 The goal is not to prescribe one exact implementation. The goal is to help you
 build a similar system in the language, framework, and workflow that fit your
 setup.
+
+## In one sentence
+
+Store the machine-readable index in SQLite, keep human-readable state in plain
+markdown, and make a CLI the only stable integration surface.
 
 ## Why this exists
 
@@ -23,16 +28,25 @@ Many assistant workflows need a memory layer that is:
 This blueprint is designed to cover that common case before you add embeddings,
 external databases, or more complex orchestration.
 
+## Read first
+
+- Guide: `docs/LOCAL_FIRST_KB_GUIDE.md`
+- Example skill wrapper: `examples/skill-wrapper-template.md`
+- License: `LICENSE`
+
 ## What is in this repo
 
 - `docs/LOCAL_FIRST_KB_GUIDE.md` — the full implementation guide
 - `examples/skill-wrapper-template.md` — a framework-agnostic assistant skill template
 - `LICENSE` — permissive reuse terms
 
-## Core idea
+## Why this pattern works
 
-Store the machine-readable index in SQLite, keep human-readable state in plain
-markdown, and make a CLI the only stable integration surface.
+- SQLite + FTS5 keeps search local, fast, and easy to inspect
+- markdown keeps the human-facing layer portable and editor-friendly
+- a CLI keeps assistant integration simple and framework-agnostic
+- provenance makes answers traceable instead of magical
+- local-first design keeps the system understandable and debuggable
 
 ## Who this is for
 
@@ -46,16 +60,6 @@ markdown, and make a CLI the only stable integration surface.
 - not tied to one assistant framework
 - not dependent on one language or runtime
 - not an argument against embeddings forever — just a reminder to start simple
-
-## Read first
-
-Start with the guide:
-
-- `docs/LOCAL_FIRST_KB_GUIDE.md`
-
-Then adapt the example skill wrapper to your own tooling:
-
-- `examples/skill-wrapper-template.md`
 
 ## At a glance
 
